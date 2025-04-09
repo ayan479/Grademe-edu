@@ -1,0 +1,14 @@
+Nome do exercício: ft_split
+Arquivos esperados: ft_split.c
+Funções permitidas: malloc
+--------------------------------------------------------------------------------
+
+Escreva uma função que recebe uma string, divide-a em palavras e as retorna como
+um array de strings terminado em NULL.
+
+Uma "palavra" é definida como uma parte de uma string delimitada por espaços/tabs/novas
+linhas, ou pelo início/fim da string.
+
+Sua função deve ser declarada da seguinte forma:
+
+char    **ft_split(char *str);
