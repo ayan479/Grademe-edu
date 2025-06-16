@@ -18,12 +18,15 @@ class Warlock
 		// types fit the bill, it's up to you to choose the best one.
 		std::map < std::string, ASpell * > s_arr;
     public:
+        Warlock(std::string const & name, std::string const & title);
+        ~Warlock();        
+        
         std::string const & getName() const;
         std::string const & getTitle() const;
+    
         void setTitle(std::string const & title);
-        Warlock(std::string const & name, std::string const & title);
-        ~Warlock();
         void introduce() const;
+
 		// * learnSpell, takes a pointer to ASpell, that makes the Warlock learn a spell
 		void learnSpell(ASpell *as);
 		// * forgetSpell, takes a string corresponding a to a spell's name, and makes the

@@ -2,12 +2,17 @@
 
 ASpell::ASpell() {}
 
-ASpell::~ASpell() {}
-
 ASpell::ASpell(std::string const & name, std::string const & effects)
 {
 	this->name = name;
 	this->effects = effects;
+}
+
+ASpell::~ASpell() 		{}
+
+ASpell::ASpell(ASpell const & obj)
+{
+	*this = obj;
 }
 
 ASpell & ASpell::operator= (ASpell const & as)
@@ -16,6 +21,8 @@ ASpell & ASpell::operator= (ASpell const & as)
 	this->effects = as.effects;
 	return (*this);
 }
+
+
 
 std::string const & ASpell::getName() const
 {
@@ -28,10 +35,7 @@ std::string const & ASpell::getEffects() const
 }
 
 // ASpell has a constructor that takes its name and its effects, in that order.
-ASpell::ASpell(ASpell const & obj)
-{
-	*this = obj;
-}
+
 
 // This one will simply call the getHitBySpell of the passed object, passing the current instance as parameter.
 

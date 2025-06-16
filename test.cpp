@@ -1,6 +1,8 @@
 // C++ Module 02 Template Guide
 // This file serves as a reference template for the module 02 assignment patterns
 #include <string>
+#include <iostream>
+#include <map>
 
 /********************************************************************
  * ABSTRACT BASE CLASS PATTERN

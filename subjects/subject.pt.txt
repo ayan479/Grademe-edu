@@ -1,79 +1,92 @@
-Nome da pasta  : cpp_module00
+
+Nome da pasta : cpp_module01
 Arquivos esperados   : Warlock.cpp Warlock.hpp
+                       ASpell.hpp ASpell.cpp
+                       ATarget.hpp ATarget.cpp
+                       Fwoosh.hpp Fwoosh.cpp
+                       Dummy.hpp Dummy.cpp
 --------------------------------------------------------------------------------
 
-Crie uma classe Warlock. Ela deve estar na forma de Coplien.
+Na classe Warlock, a instrução switch é PROIBIDA e seu uso resultará em -42.
 
-Ela deve ter os seguintes atributos privados:
+Crie uma classe abstrata chamada ASpell, na forma de Coplien, que possui os 
+seguintes atributos protegidos:
+
 * name (string)
-* title (string)
+* effects (string)
 
-Como eles são privados, você deve escrever os seguintes getters:
-* getName, retorna uma referência para uma string constante
-* getTitle, retorna uma referência para uma string constante
+Ambos terão getters (getName e getEffects) que retornam strings.
 
-Ambas as funções devem ser chamáveis em um Warlock constante.
+Adicione também um método puro clone que retorna um ponteiro para ASpell.
 
-Crie o seguinte setter:
-* setTitle, retorna void e recebe uma referência para uma string constante
+Todas essas funções podem ser chamadas em um objeto constante.
 
-Seu Warlock também deve ter, além do que é exigido pela forma de Coplien, 
-um construtor que recebe, nesta ordem, seu nome e título. Seu Warlock não poderá 
-ser copiado, instanciado por cópia ou instanciado sem um nome e um título.
+ASpell tem um construtor que recebe seu nome e seus efeitos, nessa ordem.
 
-Por exemplo:
-Warlock bob;                            //Não compila
-Warlock bob("Bob", "the magnificent");  //Compila
-Warlock jim("Jim", "the nauseating");   //Compila
-bob = jim;                              //Não compila
-Warlock jack(jim);                      //Não compila
+Agora você criará uma classe abstrata ATarget, na forma de Coplien. Ela tem um 
+atributo type, que é uma string, e seu getter associado, getType, que retorna 
+uma referência para uma string constante.
 
-Ao ser criado, o Warlock diz:
+Da mesma forma que ASpell, ela tem um método puro clone().
 
-<NAME>: This looks like another boring day.
+Todas essas funções podem ser chamadas em um objeto constante.
 
-Claro, sempre que usarmos placeholders como <NAME>, <TITLE>, etc...
-nas saídas, você deve substituí-los pelo valor apropriado. Sem os < e >.
+Ela tem um construtor que recebe seu tipo.
 
-Quando ele morre, ele diz:
+Agora, adicione à sua ATarget uma função getHitBySpell que recebe uma referência 
+para uma ASpell constante.
 
-<NAME>: My job here is done!
+Ela exibirá:
 
-Nosso Warlock também deve ser capaz de se apresentar, vangloriando-se com toda 
-sua força.
+<TYPE> has been <EFFECTS>!
 
-Então você deve escrever a seguinte função:
-* void introduce() const;
+<TYPE> é o tipo de ATarget, e <EFFECTS> é o retorno da função getEffects de ASpell.
 
-Ela deve exibir:
+Finalmente, adicione à sua classe ASpell uma função launch que recebe uma referência 
+para uma ATarget constante.
 
-<NAME>: I am <NAME>, <TITLE>!
+Esta simplesmente chamará o getHitBySpell do objeto passado, passando a instância 
+atual como parâmetro.
 
-Aqui está um exemplo de uma função principal de teste e sua saída associada:
+Quando tudo isso estiver feito, crie uma implementação de ASpell chamada Fwoosh. 
+Seu construtor padrão definirá o nome como "Fwoosh" e os efeitos como "fwooshed". 
+Você, é claro, implementará o método clone(). No caso de Fwoosh, ele retornará um 
+ponteiro para um novo objeto Fwoosh.
+
+Da mesma forma, crie um ATarget concreto chamado Dummy, cujo tipo é "Target Practice Dummy". 
+Você também deve implementar seu método clone().
+
+Adicione ao Warlock as seguintes funções membro:
+
+* learnSpell, que recebe um ponteiro para ASpell, que faz o Warlock aprender um feitiço
+* forgetSpell, que recebe uma string correspondente ao nome de um feitiço, e faz o Warlock 
+esquecê-lo. Se não for um feitiço conhecido, não faz nada.
+* launchSpell, que recebe uma string (um nome de feitiço) e uma referência para ATarget, que
+ lança o feitiço no alvo selecionado. Se não for um feitiço conhecido, não faz nada.
+
+Você precisará de um novo atributo para armazenar os feitiços que seu Warlock conhece. 
+Vários tipos se encaixam, cabe a você escolher o melhor.
+
+Abaixo está um possível teste principal e sua saída esperada:
 
 int main()
 {
-  Warlock const richard("Richard", "Mistress of Magma");
+  Warlock richard("Richard", "the Titled");
+
+  Dummy bob;
+  Fwoosh* fwoosh = new Fwoosh();
+
+  richard.learnSpell(fwoosh);
+
   richard.introduce();
-  std::cout << richard.getName() << " - " << richard.getTitle() << std::endl;
+  richard.launchSpell("Fwoosh", bob);
 
-  Warlock* jack = new Warlock("Jack", "the Long");
-  jack->introduce();
-  jack->setTitle("the Mighty");
-  jack->introduce();
-
-  delete jack;
-
-  return (0);
+  richard.forgetSpell("Fwoosh");
+  richard.launchSpell("Fwoosh", bob);
 }
 
 ~$ ./a.out | cat -e
 Richard: This looks like another boring day.$
-Richard: I am Richard, Mistress of Magma!$
-Richard - Mistress of Magma$
-Jack: This looks like another boring day.$
-Jack: I am Jack, the Long!$
-Jack: I am Jack, the Mighty!$
-Jack: My job here is done!$
+Richard: I am Richard, the Titled!$
+Target Practice Dummy has been fwooshed!$
 Richard: My job here is done!$
-~$
