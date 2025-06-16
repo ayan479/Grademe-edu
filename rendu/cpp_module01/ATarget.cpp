@@ -9,7 +9,7 @@ ATarget::ATarget(ATarget const &other) : type(other.type)
 {
 }
 
-ATarget& ATarget::operator=((ATarget const &other)
+ATarget& ATarget::operator=(ATarget const &other)
 {
     this->type = other.type;
     return *this;
