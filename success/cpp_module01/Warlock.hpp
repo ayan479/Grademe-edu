@@ -1,23 +1,23 @@
-#pragma once
+#pragma once 
 
 #include <iostream>
-#include "ASpell.hpp"
+#include <string>
+#include <map>
 #include "ATarget.hpp"
-#include "SpellBook.hpp"
+#include "ASpell.hpp"
 
 class Warlock
 {
     private:
         std::string name;
         std::string title;
+        std::map <std::string, ASpell *> spells;
 
         Warlock();
-        Warlock(Warlock const &other);
+        Warlock(Warlock const& other);
         Warlock &operator=(Warlock const &other);
-
-        SpellBook book;
     public:
-        Warlock(std::string const &name, std::string const &title);
+        Warlock(std::string const & name, std::string const & title);
         ~Warlock();
 
         std::string const &getName() const;
@@ -27,7 +27,8 @@ class Warlock
 
         void introduce() const;
 
-        void learnSpell(ASpell *aspell_ptr);
+        void learnSpell(ASpell *spell);
         void forgetSpell(std::string name);
-        void launchSpell(std::string name, ATarget const &atarget_ref);
+        void launchSpell(std::string name, ATarget const &target);
+
 };

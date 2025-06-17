@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    tester.sh                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tfregni <tfregni@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/06/20 02:26:11 by jcluzet           #+#    #+#              #
+#    Updated: 2023/11/05 00:51:20 by tfregni          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 MAIN='main.cpp'
-MAIN1='cpp_module01/main.cpp'
+MAIN1='cpp_module02/main.cpp'
 
 index=0
 
@@ -9,13 +21,13 @@ then
 fi
 
 cd .system/grading
-clang++ -Wall -Wextra -Werror -std=c++98 -o source Warlock.cpp ASpell.cpp ATarget.cpp Dummy.cpp Fwoosh.cpp $MAIN
+clang++ -Wall -Wextra -Werror -std=c++98 -o source Warlock.cpp ASpell.cpp ATarget.cpp BrickWall.cpp Dummy.cpp Fireball.cpp Fwoosh.cpp Polymorph.cpp SpellBook.cpp TargetGenerator.cpp $MAIN
 ./source | cat -e > sourcexam       #TESTING
 rm source
-cp main.cpp ../../rendu/cpp_module01
+cp main.cpp ../../rendu/cpp_module02
 cd ../../rendu
 {
-clang++ -Wall -Wextra -Werror -std=c++98 -o final cpp_module01/Warlock.cpp cpp_module01/ASpell.cpp cpp_module01/ATarget.cpp cpp_module01/Dummy.cpp cpp_module01/Fwoosh.cpp $MAIN1
+clang++ -Wall -Wextra -Werror -std=c++98 -o final cpp_module02/Warlock.cpp cpp_module02/ASpell.cpp cpp_module02/ATarget.cpp cpp_module02/BrickWall.cpp cpp_module02/Dummy.cpp cpp_module02/Fireball.cpp cpp_module02/Fwoosh.cpp cpp_module02/Polymorph.cpp cpp_module02/SpellBook.cpp cpp_module02/TargetGenerator.cpp $MAIN1
 }  &>../.system/grading/traceback
 rm -f cpp_module01/main.cpp
 # if there is a traceback file, exit this script

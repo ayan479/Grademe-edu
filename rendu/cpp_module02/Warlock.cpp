@@ -28,3 +28,21 @@ void Warlock::setTitle(std::string const &title)
 void Warlock::introduce() const{
      std::cout << this->name << ": I am " << this->name << ", " << this->title << "!\n";
 }
+
+void Warlock::learnSpell(ASpell *spell)
+{
+    SpellBook.learnSpell(spell);
+}
+
+void Warlock::forgetSpell(std::string name)
+{
+    SpellBook.forgetSpell(name);
+}
+
+void Warlock::launchSpell(std::string name, ATarget const &target)
+{
+    if (SpellBook.createSpell(name))
+        SpellBook.createSpell(name)->launch(target);
+}
+
+

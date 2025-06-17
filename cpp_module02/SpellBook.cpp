@@ -4,17 +4,6 @@ SpellBook::SpellBook() {}
 
 SpellBook::~SpellBook() {}
 
-SpellBook::SpellBook(SpellBook const & obj)
-{
-	*this = obj;
-}
-
-SpellBook & SpellBook::operator=(SpellBook const & sb)
-{
-	s_arr = sb.s_arr;
-	return (*this);
-} 
-
 void SpellBook::learnSpell(ASpell* as)
 {
 	if(as)

@@ -2,12 +2,17 @@
 
 #include <iostream>
 #include <string>
+#include <map>
+#include "ATarget.hpp"
+#include "ASpell.hpp"
+#include "SpellBook.hpp"
 
 class Warlock
 {
     private:
         std::string name;
         std::string title;
+        SpellBook SpellBook;
 
         Warlock();
         Warlock(Warlock const& other);
@@ -22,4 +27,9 @@ class Warlock
         void setTitle(std::string const &title);
 
         void introduce() const;
+
+        void learnSpell(ASpell *spell);
+        void forgetSpell(std::string name);
+        void launchSpell(std::string name, ATarget const &target);
+
 };
