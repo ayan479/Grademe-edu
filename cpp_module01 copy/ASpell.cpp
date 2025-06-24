@@ -4,10 +4,6 @@ ASpell::ASpell()
 {
 }
 
-ASpell::~ASpell()
-{
-}
-
 ASpell::ASpell(ASpell const &other)
 {
     *this = other;

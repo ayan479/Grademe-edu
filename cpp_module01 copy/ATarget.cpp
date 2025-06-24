@@ -4,10 +4,6 @@ ATarget::ATarget()
 {
 }
 
-ATarget::~ATarget()
-{
-}
-
 ATarget::ATarget(ATarget const &other)
 {
     *this = other;

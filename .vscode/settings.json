@@ -68,6 +68,11 @@
         "numeric": "cpp",
         "random": "cpp",
         "ratio": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "memory_resource": "cpp",
+        "numbers": "cpp",
+        "cinttypes": "cpp"
     }
 }
